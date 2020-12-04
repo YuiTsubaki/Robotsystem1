@@ -13,5 +13,5 @@ RaspberryPi4とそれに付随する周辺機器、LED、ブレッドボード�
 回路<br>
 GPIO25とGNDの間にLEDと抵抗を接続し、LEDのアノードをGPIO25に接続しGNDへ<br>
 
-教えてくれた生徒<br>
+教えてくれた人<br>
 tadanohiroyuki<br>
