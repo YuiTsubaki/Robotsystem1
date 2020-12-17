@@ -5,7 +5,7 @@
 #include<linux/uaccess.h>
 #include<linux/io.h>
 
-MODULE_AUTHOR("Ryuichi Ueda");
+MODULE_AUTHOR("Ryuichi Ueda and Yui Tsubaki");
 MODULE_DESCRIPTION("driver for LED control");
 MODULE_LICENSE("GPL");
 MODULE_VERSION("0.0.1");
@@ -19,9 +19,7 @@ static ssize_t led_write(struct file* filp, const char* buf, size_t count, loff_
 {
 	char c;
 	if(copy_from_user(&c,buf,sizeof(char)))
-	return -EFAULT;
-
-//	printk(KERN_INFO "receive %c\n",c);
+		return -EFAULT;
 
 	if(c == '1')
 		gpio_base[10] = 1 << 25;
@@ -50,7 +48,8 @@ static struct file_operations led_fops = {
 };
 
 static int __init init_mod(void) //カーネルモジュール
-{	int retval;
+{	
+	int retval;
 	retval = alloc_chrdev_region(&dev, 0, 1, "myled");
 	if(retval < 0){
 		printk(KERN_ERR "alloc_chrdev_region failed.\n");
